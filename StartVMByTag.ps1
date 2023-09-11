@@ -16,7 +16,7 @@ $vms = get-azvm | Where-Object {$_.Tags['LabGroup'] -eq 'autostart'}
 foreach ($vm in $vms) {
     $status = (get-azvm -Name $vm.Name -ResourceGroupName $vm.ResourceGroupName -status).statuses[1].code
     if ($status -ne "PowerState/running") {
-        Write-Ouput "Starting VM $vm.name "
+        Write-Output "Starting VM $vm.name "
         start-azvm $vm.Name -ResourceGroupName $vm.ResourceGroupName -NoWait
     }
 }
